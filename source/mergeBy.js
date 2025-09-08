@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Функция, которая объединяет два массива объектов по указанному ключу.
  * @param {Array<Object>} arr1 - Первый массив объектов.
@@ -5,7 +7,6 @@
  * @param {string} keyName - Ключ, по которому происходит объединение.
  * @returns {Array<Object>} - Новый массив объединенных объектов.
  */
-
 function mergeBy(arr1, arr2, keyName) {
 
     const resultMap = new Map(); 
@@ -25,7 +26,6 @@ function mergeBy(arr1, arr2, keyName) {
  * @param {string} keyName - Ключ для объединения
  * @param {Function} mergeFunc - Функция для объединения объектов
  */
-
 function processArray(arr, map, keyName, mergeFunc) {
 
     for (const obj of arr) {
@@ -53,7 +53,6 @@ function processArray(arr, map, keyName, mergeFunc) {
  * @param {Object} obj2 - Второй объект
  * @returns {Object} - Новый объединенный объект
  */
-
 function mergeFunc(obj1, obj2) {
 
     let newObj = { ...obj1 };
