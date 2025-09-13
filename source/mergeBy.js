@@ -31,15 +31,14 @@ function processArray(arr, map, keyName, mergeFunc) {
     for (const obj of arr) {
         const keyValue = obj[keyName];
 
-        if (keyValue === undefined) {
+        if (!keyValue) {
             continue;
         }
 
         if (map.has(keyValue)){
             const objInMap = map.get(keyValue);
             map.set(keyValue, mergeFunc(objInMap, obj)); 
-        }
-        else {
+        } else {
             map.set(keyValue, { ...obj });
         }
     }
@@ -57,18 +56,16 @@ function mergeFunc(obj1, obj2) {
 
     let newObj = { ...obj1 };
 
-    for (const [key, value] of Object.entries(obj2)) {
+    Object.entries(obj2).forEach(([key, value]) => {
         if (Array.isArray(newObj[key]) || Array.isArray(value)) {
             const arr1 = Array.isArray(newObj[key]) ? newObj[key] : [newObj[key]];
             const arr2 = Array.isArray(value) ? value : [value];
             newObj[key] = [...new Set([...arr1, ...arr2])];
-        } 
-        else {
+        } else {
             newObj[key] = value;
         }
-    }
+    });
     
     return newObj;
-
+    
 }
-
