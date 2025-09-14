@@ -54,7 +54,7 @@ function processArray(arr, map, keyName, mergeFunc) {
  */
 function mergeFunc(obj1, obj2) {
 
-    let newObj = { ...obj1 };
+    const newObj = { ...obj1 };
 
     Object.entries(obj2).forEach(([key, value]) => {
         if (Array.isArray(newObj[key]) || Array.isArray(value)) {
@@ -67,5 +67,5 @@ function mergeFunc(obj1, obj2) {
     });
     
     return newObj;
-    
+
 }
