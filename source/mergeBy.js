@@ -7,16 +7,14 @@
  * @param {string} keyName - Ключ, по которому происходит объединение.
  * @returns {Array<Object>} - Новый массив объединенных объектов.
  */
-function mergeBy(arr1, arr2, keyName) {
+const mergeBy = (arr1, arr2, keyName) => {
 
     const resultMap = new Map(); 
-
     processArray(arr1, resultMap, keyName, mergeFunc);
     processArray(arr2, resultMap, keyName, mergeFunc);
-  
     return Array.from(resultMap.values());
 
-}
+};
 
 
 /**
@@ -26,16 +24,13 @@ function mergeBy(arr1, arr2, keyName) {
  * @param {string} keyName - Ключ для объединения
  * @param {Function} mergeFunc - Функция для объединения объектов
  */
-function processArray(arr, map, keyName, mergeFunc) {
+const processArray = (arr, map, keyName, mergeFunc) => {
 
     for (const obj of arr) {
         const keyValue = obj[keyName];
-
-        if (!keyValue) {
-            continue;
-        }
-
-        if (map.has(keyValue)){
+        if (!keyValue) continue;
+        
+        if (map.has(keyValue)) {
             const objInMap = map.get(keyValue);
             map.set(keyValue, mergeFunc(objInMap, obj)); 
         } else {
@@ -43,7 +38,7 @@ function processArray(arr, map, keyName, mergeFunc) {
         }
     }
 
-}
+};
 
 
 /**
@@ -52,7 +47,7 @@ function processArray(arr, map, keyName, mergeFunc) {
  * @param {Object} obj2 - Второй объект
  * @returns {Object} - Новый объединенный объект
  */
-function mergeFunc(obj1, obj2) {
+const mergeFunc = (obj1, obj2) => {
 
     const newObj = { ...obj1 };
 
@@ -65,7 +60,6 @@ function mergeFunc(obj1, obj2) {
             newObj[key] = value;
         }
     });
-    
     return newObj;
-
-}
+    
+};
